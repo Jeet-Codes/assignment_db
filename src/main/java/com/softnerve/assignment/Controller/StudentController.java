@@ -6,19 +6,17 @@ import io.swagger.v3.oas.annotations.Hidden;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-import java.io.IOException;
 import java.util.List;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/student")
 public class StudentController {
 
     @Autowired
@@ -45,7 +43,7 @@ public class StudentController {
             @ApiResponse(responseCode = "200", description = "List of students retrieved successfully")
     })
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<List<StudentDto>> getAllStudents(){
         List<StudentDto> students = studentService.getStudents();
         return new ResponseEntity<>(students, HttpStatus.OK);
