@@ -1,0 +1,29 @@
+version: "3.8"
+
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb
+    environment:
+      MONGO_INITDB_DATABASE: Softnerve
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - ./mongo_data:/data/db
+
+  springboot:
+    build: .
+    container_name: softnerve_assignment_project
+    environment:
+      SERVER_PORT: 8181
+      MONGO_HOST: mongodb
+      MONGO_PORT: 27017
+      MONGO_DB: Softnerve
+    ports:
+      - "8181:8181"
+    depends_on:
+      - mongodb
+
+volumes:
+  mongo_data:
